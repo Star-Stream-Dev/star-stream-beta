@@ -3,6 +3,7 @@ import { Lock, User, Shield, Info } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import starstreamIcon from '@/assets/starstream-icon.png';
+import { StarStreamBackground } from '@/components/StarStreamBackground';
 
 function getGreeting() {
   const hour = new Date().getHours();
