@@ -642,11 +642,16 @@ export function DiscordChat({ onClose }: DiscordChatProps) {
       : censorText(parseEmojis(messageToSend));
 
     if (view === 'server') {
-      await supabase.from('chat_messages').insert({
+      const { error } = await supabase.from('chat_messages').insert({
         username: user.username,
         message: finalMessage,
         reply_to_id: replyingTo?.id || null,
       });
+      if (error) {
+        console.error('Failed to send chat message:', error);
+        setIsLoading(false);
+        return;
+      }
     } else if (view === 'dm' && selectedDmUser) {
       await supabase.from('direct_messages').insert({
         sender_id: user.id,
