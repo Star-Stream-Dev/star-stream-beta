@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { EyeOff, Scan, AlertTriangle, SquareTerminal } from 'lucide-react';
 import starstreamIcon from '@/assets/starstream-icon.png';
+import { StarStreamBackground } from '@/components/StarStreamBackground';
 
 interface CloakLauncherProps {
   onContinue: () => void;
@@ -80,8 +81,9 @@ export function CloakLauncher({ onContinue, onDevMode }: CloakLauncherProps) {
     'group h-full text-left rounded-xl border border-border/40 bg-card/60 backdrop-blur-sm p-6 transition-all duration-300 hover:border-primary/60 hover:bg-card hover:-translate-y-1 hover:shadow-[0_20px_45px_-25px_hsl(var(--primary)/0.9)] disabled:opacity-60';
 
   return (
-    <div className="min-h-screen bg-gradient-bg flex items-center justify-center p-4 font-mono">
-      <div className="w-full max-w-5xl space-y-10">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4 font-mono relative overflow-hidden">
+      <StarStreamBackground />
+      <div className="w-full max-w-5xl space-y-10 relative z-10">
         <div className="text-center space-y-4">
           <img
             src={starstreamIcon}

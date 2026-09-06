@@ -3,6 +3,7 @@ import { Lock, User, Shield, Info } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import starstreamIcon from '@/assets/starstream-icon.png';
+import { StarStreamBackground } from '@/components/StarStreamBackground';
 
 function getGreeting() {
   const hour = new Date().getHours();
@@ -154,8 +155,9 @@ export function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[hsl(220,20%,10%)] flex items-center justify-center p-4">
-      <div className="w-full max-w-5xl flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+    <div className="min-h-screen bg-[hsl(220,20%,10%)] flex items-center justify-center p-4 relative overflow-hidden">
+      <StarStreamBackground />
+      <div className="w-full max-w-5xl flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12 relative z-10">
         {/* Left side - Clock & System Info */}
         <div className="flex flex-col items-center md:items-start gap-6 md:gap-8 flex-1">
           {/* Clock */}

@@ -5,6 +5,7 @@ const BYPASS_AUTH = false;
 import { Home, Gamepad2, MessageSquare, Bug, Music, LogOut, Shield, Megaphone, Youtube, Eye, EyeOff, Globe, Spade, Sparkles, Settings, Mic2, Paintbrush, Joystick } from 'lucide-react';
 import { DiscordChat } from '@/components/DiscordChat';
 import { BootScreen } from '@/components/BootScreen';
+import { StarStreamBackground } from '@/components/StarStreamBackground';
 import { SolarTerminal } from '@/components/SolarTerminal';
 import { DesktopEnvironment } from '@/components/desktop/DesktopEnvironment';
 import { DevModeLoginGate } from '@/components/DevModeLoginGate';
@@ -229,10 +230,8 @@ function IndexContent({ onDevMode }: { onDevMode: () => void }) {
       {/* Snowfall effect */}
       {snowfallEnabled && <Snowfall />}
       
-      {/* Background gradient overlay */}
-      {customBackground.type === 'none' && (
-        <div className="fixed inset-0 bg-gradient-bg pointer-events-none" />
-      )}
+      {/* Default animated star-stream background */}
+      {customBackground.type === 'none' && <StarStreamBackground />}
       
       <IndexInner onDevMode={onDevMode} />
     </div>
