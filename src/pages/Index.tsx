@@ -229,10 +229,8 @@ function IndexContent({ onDevMode }: { onDevMode: () => void }) {
       {/* Snowfall effect */}
       {snowfallEnabled && <Snowfall />}
       
-      {/* Background gradient overlay */}
-      {customBackground.type === 'none' && (
-        <div className="fixed inset-0 bg-gradient-bg pointer-events-none" />
-      )}
+      {/* Default animated star-stream background */}
+      {customBackground.type === 'none' && <StarStreamBackground />}
       
       <IndexInner onDevMode={onDevMode} />
     </div>
