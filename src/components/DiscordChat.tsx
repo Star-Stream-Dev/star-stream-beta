@@ -255,7 +255,8 @@ export function DiscordChat({ onClose }: DiscordChatProps) {
     const serverChannel = supabase
       .channel('server-messages')
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'chat_messages' }, (payload) => {
-        setServerMessages(prev => [...prev, payload.new as Message]);
+        const incoming = payload.new as Message;
+        setServerMessages(prev => (prev.some(m => m.id === incoming.id) ? prev : [...prev, incoming]));
       })
       .subscribe();
     
@@ -354,13 +355,22 @@ export function DiscordChat({ onClose }: DiscordChatProps) {
       });
     };
 
-    const intervalId = window.setInterval(syncDmConversation, 1200);
+    const intervalId = window.setInterval(syncDmConversation, 3000);
 
     return () => {
       isActive = false;
       window.clearInterval(intervalId);
     };
   }, [user, sessionToken, view, selectedDmUser]);
+
+  // Fallback live sync for the global chatroom (in case realtime delivery drops)
+  useEffect(() => {
+    if (!user || view !== 'server') return;
+    const intervalId = window.setInterval(() => {
+      fetchServerMessages();
+    }, 3000);
+    return () => window.clearInterval(intervalId);
+  }, [user, view]);
 
   // Track previous message counts to only scroll on new messages
   const prevServerMessagesCount = useRef(serverMessages.length);
@@ -385,9 +395,18 @@ export function DiscordChat({ onClose }: DiscordChatProps) {
     const { data } = await supabase
       .from('chat_messages')
       .select('*')
-      .order('created_at', { ascending: true })
+      .order('created_at', { ascending: false })
       .limit(100);
-    setServerMessages(data || []);
+    const ordered = (data || []).slice().reverse();
+    setServerMessages(prev => {
+      if (
+        prev.length === ordered.length &&
+        prev[prev.length - 1]?.id === ordered[ordered.length - 1]?.id
+      ) {
+        return prev;
+      }
+      return ordered;
+    });
   };
 
   const fetchAllUsers = async () => {
