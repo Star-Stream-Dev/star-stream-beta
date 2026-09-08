@@ -27,6 +27,8 @@ jobs:
           cache: npm
 
       - run: npm ci  --loglevel verbose
+      - run: npm i --save coi-serviceworker
+      - run: cp node_modules/coi-serviceworker/coi-serviceworker.js dist/
 
       - name: Work out the base path
         id: base
