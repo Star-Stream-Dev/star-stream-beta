@@ -70,9 +70,9 @@ export function RetroArchPlayer({ onClose }: RetroArchPlayerProps) {
           <EmulatorJS
             EJS_core={selectedCore as any}
             EJS_gameUrl={romUrl}
-            EJS_pathtodata="https://cdn.emulatorjs.org/stable/data/"
+            EJS_pathtodata="https://cdn.emulatorjs.org/latest/data/"
             EJS_startOnLoaded={true}
-            EJS_threads = true
+            EJS_threads ={true}
           />
         </div>
       </div>
