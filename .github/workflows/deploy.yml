@@ -28,7 +28,6 @@ jobs:
 
       - run: npm ci  --loglevel verbose
       - run: npm i --save coi-serviceworker
-      - run: cp node_modules/coi-serviceworker/coi-serviceworker.js dist/
 
       - name: Work out the base path
         id: base
@@ -48,6 +47,7 @@ jobs:
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
           VITE_SUPABASE_PROJECT_ID: ${{ secrets.VITE_SUPABASE_PROJECT_ID }}
         run: npm run build --loglevel verbose
+      - run: cp node_modules/coi-serviceworker/coi-serviceworker.js dist/
 
       - name: SPA fallback + disable Jekyll
         run: |
