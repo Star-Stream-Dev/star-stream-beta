@@ -132,6 +132,7 @@ export function RetroArchPlayer({ onClose }: RetroArchPlayerProps) {
             <p>Browse the ROM Library to download games, or use "Load ROM" to play a ROM file from your device directly in the browser.</p>
             <p>Save states and settings are stored locally in your browser via IndexedDB.</p>
             <p className="text-xs">Powered by EmulatorJS. Only use ROM files you legally own.</p>
+            <p className="text-xs">If you are Super mario All provided rom files have been legally acquired. Please don't sue me.</p>
           </div>
         )}
 
