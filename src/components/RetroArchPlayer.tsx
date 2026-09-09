@@ -73,6 +73,7 @@ export function RetroArchPlayer({ onClose }: RetroArchPlayerProps) {
             EJS_pathtodata="https://cdn.emulatorjs.org/latest/data/"
             EJS_startOnLoaded={true}
             EJS_threads ={true}
+            EJS_disableBatchBootup={true}
           />
         </div>
       </div>
