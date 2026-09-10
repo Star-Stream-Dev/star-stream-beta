@@ -21,7 +21,7 @@ const CORES = [
   { id: 'psx', label: 'PlayStation', extensions: ['.bin', '.cue', '.iso', '.pbp', '.chd', '.zip'] },
   { id: 'atari2600', label: 'Atari 2600', extensions: ['.a26', '.zip'] },
   { id: 'arcade', label: 'Arcade (MAME)', extensions: ['.zip'] },
-  { id: 'dos', label: 'DOS-Box', extensions: ['.exe', '.com', '.zip', '.iso'] }
+  { id: 'dos', label: 'DOS-Box', extensions: ['.exe', '.com', '.zip', '.iso'] },
   { id: '3ds', label: '3DS', extentions: ['.3ds','.zip'] },
 ] as const;
 
